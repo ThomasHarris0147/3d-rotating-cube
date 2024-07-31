@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useLoop } from '@tresjs/core'
-import { shallowRef, ref } from 'vue'
+import { shallowRef } from 'vue'
 const { onBeforeRender } = useLoop()
 const triangleRef = shallowRef()
 onBeforeRender(({ delta, elapsed }) => {
