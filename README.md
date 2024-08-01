@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-# portfolio-website-3d-vue
-
-=======
-
 # thomas-harris-port
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -49,5 +43,3 @@ pnpm test:unit
 ```sh
 pnpm lint
 ```
-
-> > > > > > > 30911d8 (Initial Commit)
