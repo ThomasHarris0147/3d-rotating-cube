@@ -108,11 +108,11 @@ const onViewSpinClicked = () => {
 }
 </script>
 <template>
-  <Html>
+  <!-- <Html>
     <button @click="onViewGrowClicked">grow</button>
     <button @click="onViewShrinkClicked">shrink</button>
     <button @click="onViewSpinClicked">spin</button>
-  </Html>
+  </Html> -->
   <Levioso :speed="closeUp ? 0 : 1" :rotationFactor="closeUp ? 0 : 1">
     <TresGroup ref="entireBox">
       <TresGroup ref="topFace">
