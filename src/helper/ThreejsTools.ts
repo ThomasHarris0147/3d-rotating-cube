@@ -1,4 +1,4 @@
-import { Raycaster, Triangle, Vector3, type Object3D, Vector2, Group, Mesh, Scene } from 'three'
+import { Vector3, type Object3D, Group, Mesh, Scene } from 'three'
 
 /*  
    Rotate Object About Pivot Point, doing it with pure "object.rotation" would rotate this about world pivot point.

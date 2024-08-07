@@ -14,8 +14,6 @@ import { Vector3 } from 'three'
 // @ts-ignore
 import { rotateAboutPoint, degToRadians } from '@/helper/ThreejsTools'
 // @ts-ignore
-import assert from 'assert'
-// @ts-ignore
 import { randomIntFromInterval } from '@/helper/GeneralHelpers'
 const BoxObjects = new BoxObjectHandler()
 const ReferencedEntireBox: Ref<BoxObjectInterface[]> = ref(BoxObjects.getBoxObjects())
