@@ -7,6 +7,7 @@
     "nightwatch.conf.*",
     "playwright.config.*"
   ],
+  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
