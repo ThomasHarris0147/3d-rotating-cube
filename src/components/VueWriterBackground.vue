@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, type Ref } from 'vue'
+import { computed } from 'vue'
 
 // @ts-ignore
 const props = defineProps({
@@ -20,5 +20,6 @@ var refText = computed(() => {
 p {
   text-align: justify;
   opacity: 0.1;
+  font-size: 2vh;
 }
 </style>

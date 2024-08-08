@@ -3,8 +3,10 @@ import type { BoxObjectInterface } from '../interfaces/BoxObjectInterface'
 
 export class BoxObjectHandler {
   BoxObjects: BoxObjectInterface[]
+  topSixIndexes: number[]
   constructor() {
     this.BoxObjects = this.dynamicallyAddId(InitialBoxCoordinates)
+    this.topSixIndexes = [8, 9, 11, 13, 15, 17, 19, 22, 26]
   }
   getBoxObjects(): BoxObjectInterface[] {
     return this.BoxObjects
@@ -13,19 +15,19 @@ export class BoxObjectHandler {
     this.BoxObjects = BoxObjects
   }
   getTopFace(): BoxObjectInterface[] {
-    const top_six_indexes = [8, 9, 11, 13, 15, 17, 19, 22, 26]
-    const top_boxes = this.BoxObjects.filter((element) => top_six_indexes.includes(element.id!))
-    return top_boxes
+    const topBoxes = this.BoxObjects.filter((element) => this.topSixIndexes.includes(element.id!))
+    return topBoxes
   }
   getTheRest(): BoxObjectInterface[] {
-    const top_six_indexes = [8, 9, 11, 13, 15, 17, 19, 22, 26]
-    const rest_boxes = this.BoxObjects.filter((element) => !top_six_indexes.includes(element.id!))
+    const rest_boxes = this.BoxObjects.filter(
+      (element) => !this.topSixIndexes.includes(element.id!)
+    )
     return rest_boxes
   }
   dynamicallyAddId(BoxCoordinate: BoxObjectInterface[]): BoxObjectInterface[] {
-    const return_array: BoxObjectInterface[] = []
+    const returnArray: BoxObjectInterface[] = []
     for (let i = 0; i < BoxCoordinate.length; i++) {
-      return_array[i] = {
+      returnArray[i] = {
         id: i,
         color: BoxCoordinate[i].color,
         position: BoxCoordinate[i].position,
@@ -34,6 +36,6 @@ export class BoxObjectHandler {
         depth: BoxCoordinate[i].depth
       }
     }
-    return return_array
+    return returnArray
   }
 }

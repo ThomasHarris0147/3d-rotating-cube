@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Levioso, Html } from '@tresjs/cientos'
+import { Levioso } from '@tresjs/cientos'
 // @ts-ignore
 import { BoxObjectHandler } from '@/components/handler/BoxObjectHandler'
 // @ts-ignore
@@ -81,7 +81,6 @@ const onViewSpinClicked = () => {
         return
       }
       const theta = degToRadians(degrees)
-      console.log('theta: ', theta)
       const pivotPoint = new Vector3(1, 1, 1)
       const pivotAxis = new Vector3(0, 1, 0)
       if (entireBox.value === null) {
@@ -95,7 +94,6 @@ const onViewSpinClicked = () => {
       const theta_choices = [90, -90, 180]
       const random_theta = randomIntFromInterval(0, 2)
       const theta = degToRadians(theta_choices[random_theta])
-      console.log('theta: ', theta)
       const pivotPoint = new Vector3(1, 1, 1)
       const pivotAxis = new Vector3(0, 0, 1)
       if (entireBox.value === null) {
@@ -106,13 +104,9 @@ const onViewSpinClicked = () => {
     }
   })
 }
+defineExpose({ onViewGrowClicked, onViewShrinkClicked, onViewSpinClicked })
 </script>
 <template>
-  <!-- <Html>
-    <button @click="onViewGrowClicked">grow</button>
-    <button @click="onViewShrinkClicked">shrink</button>
-    <button @click="onViewSpinClicked">spin</button>
-  </Html> -->
   <Levioso :speed="closeUp ? 0 : 1" :rotationFactor="closeUp ? 0 : 1">
     <TresGroup ref="entireBox">
       <TresGroup ref="topFace">

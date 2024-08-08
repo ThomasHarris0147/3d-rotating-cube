@@ -12,6 +12,23 @@ onMounted(async () => {
   backgroundTextAppVue.value = await readFileReturnText('./App.vue')
   console.log(backgroundTextAppVue.value)
 })
+const cubeComponent = ref(null)
+const seconds = 2
+function spinCube() {
+  // @ts-ignore
+  cubeComponent.value!.onViewSpinClicked()
+}
+function growCube() {
+  // @ts-ignore
+  cubeComponent.value!.onViewGrowClicked()
+}
+function shrinkCube() {
+  // @ts-ignore
+  cubeComponent.value!.onViewShrinkClicked()
+}
+setInterval(() => {
+  spinCube()
+}, seconds * 1000)
 </script>
 
 <template>
@@ -20,8 +37,9 @@ onMounted(async () => {
       <VueWriterBackground :text="backgroundTextAppVue" />
     </div>
     <header>
-      <Render3DCanvas />
+      <Render3DCanvas ref="cubeComponent" />
     </header>
+    <!-- <button @click="spinCube">Spin Cube</button> -->
   </div>
 </template>
 <style>
@@ -29,7 +47,6 @@ header {
   height: 50%;
   width: 50%;
   position: absolute;
-  /* border: 1px solid red; */
   box-sizing: border-box;
   right: 50vh;
   top: 0;

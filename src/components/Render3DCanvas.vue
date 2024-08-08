@@ -4,6 +4,7 @@ import CubeObject from '../views/CubeObject.vue'
 // import { OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
 import { BasicShadowMap, SRGBColorSpace, NoToneMapping } from 'three'
+import { ref } from 'vue'
 const gl = {
   shadows: true,
   alpha: true,
@@ -11,20 +12,37 @@ const gl = {
   outputColorSpace: SRGBColorSpace,
   toneMapping: NoToneMapping
 }
+const cubeComponent = ref(null)
+
+function onViewGrowClicked(): void {
+  // @ts-ignore
+  cubeComponent.value!.onViewGrowClicked()
+}
+function onViewShrinkClicked(): void {
+  // @ts-ignore
+  cubeComponent.value!.onViewShrinkClicked()
+}
+
+function onViewSpinClicked(): void {
+  // @ts-ignore
+  cubeComponent.value!.onViewSpinClicked()
+}
+
+defineExpose({ onViewGrowClicked, onViewShrinkClicked, onViewSpinClicked })
 </script>
 <template>
   <TresCanvas class="add-border" v-bind="gl">
     <TresPerspectiveCamera :position="[5, 5, 5]" :look-at="[0, 0, 0]" />
     <!-- OrbitControls /-->
     <Suspense>
-      <CubeObject />
+      <CubeObject ref="cubeComponent" />
     </Suspense>
     <TresAmbientLight :intensity="0.5" />
     <TresDirectionalLight :position="[0, 2, 4]" :intensity="0.5" cast-shadow />
   </TresCanvas>
 </template>
 <style>
-.add-border {
+/* .add-border {
   border: 1px solid red;
-}
+} */
 </style>
