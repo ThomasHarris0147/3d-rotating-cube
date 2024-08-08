@@ -26,6 +26,10 @@ function shrinkCube() {
   // @ts-ignore
   cubeComponent.value!.onViewShrinkClicked()
 }
+function coolCubeEffect() {
+  growCube()
+  setTimeout(shrinkCube, 500)
+}
 setInterval(() => {
   spinCube()
 }, seconds * 1000)
@@ -39,11 +43,28 @@ setInterval(() => {
     <div class="cube">
       <Render3DCanvas ref="cubeComponent" />
     </div>
-    <button @click="growCube" class="button-85" role="button">Grow Cube</button>
-    <button @click="shrinkCube" class="button-85" role="button">Shrink Cube</button>
+    <div class="button-container">
+      <button @click="coolCubeEffect" class="button-85" role="button">Hello World!</button>
+      <button @click="shrinkCube" class="button-85" role="button">Shrink Cube</button>
+      <button @click="growCube" class="button-85" role="button">Grow Cube</button>
+    </div>
   </div>
 </template>
 <style>
+.button-container {
+  display: flex;
+  justify-self: space-between;
+  padding: 10%;
+}
+button {
+  margin: auto 20px;
+  flex: 1;
+  font-size: 3vw;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 #container {
   position: fixed;
   top: 0;

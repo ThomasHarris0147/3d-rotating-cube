@@ -8,6 +8,9 @@ const props = defineProps({
 var refText = computed(() => {
   var returnText = props.text
   for (let index = 0; index < 20; index++) {
+    if (index == 11) {
+      returnText += 'Fun Fact! This background is the source code of this website!'
+    }
     returnText += props.text
   }
   return returnText
