@@ -17,7 +17,7 @@ const gl = {
     <TresPerspectiveCamera :position="[5, 5, 5]" :look-at="[0, 0, 0]" />
     <!-- OrbitControls /-->
     <Suspense>
-      <CubeObject :position="[1, 0, 0]" />
+      <CubeObject />
     </Suspense>
     <TresAmbientLight :intensity="0.5" />
     <TresDirectionalLight :position="[0, 2, 4]" :intensity="0.5" cast-shadow />

@@ -3,18 +3,21 @@
 import { onMounted, ref, type Ref } from 'vue'
 // @ts-ignore
 import Render3DCanvas from './components/Render3DCanvas.vue'
+// @ts-ignore
 import { readFileReturnText } from './helper/GeneralHelpers'
-const displayBackgroundTextAppVue: Ref<string> = ref('')
+// @ts-ignore
+import VueWriterBackground from './components/VueWriterBackground.vue'
+const backgroundTextAppVue: Ref<string> = ref('')
 onMounted(async () => {
-  const appVueContents = await readFileReturnText('./App.vue')
-  displayBackgroundTextAppVue.value = appVueContents
+  backgroundTextAppVue.value = await readFileReturnText('./App.vue')
+  console.log(backgroundTextAppVue.value)
 })
 </script>
 
 <template>
   <div id="content">
     <div id="background">
-      <pre>{{ displayBackgroundTextAppVue }}</pre>
+      <VueWriterBackground :text="backgroundTextAppVue" />
     </div>
     <header>
       <Render3DCanvas />
@@ -51,13 +54,4 @@ body {
   height: 100%;
   width: 100%;
 }
-/* body {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(222, 222, 237, 1) 75%,
-    rgba(196, 208, 210, 1) 100%
-  );
-} */
 </style>

@@ -32,6 +32,9 @@ importers:
       vue-router:
         specifier: ^4.3.3
         version: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-writer:
+        specifier: ^2.0.2
+        version: 2.0.2(vue@3.4.35(typescript@5.4.5))
     devDependencies:
       '@rushstack/eslint-patch':
         specifier: ^1.8.0
@@ -2131,6 +2134,12 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
+
+  vue-writer@2.0.2:
+    resolution: {integrity: sha512-k3Zos5f86REHoY6XRGjEHArUsd7EjUAUu0ehpPWnkHzbc9nPmzboZfw3PmPe9thN8L/QAJve69rHcUU+llFM/g==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      vue: ^3.4.21
 
   vue@3.4.35:
     resolution: {integrity: sha512-+fl/GLmI4GPileHftVlCdB7fUL4aziPcqTudpTGXCT8s+iZWuOCeNEB5haX6Uz2IpRrbEXOgIFbe+XciCuGbNQ==}
@@ -4326,6 +4335,10 @@ snapshots:
       '@vue/language-core': 2.0.29(typescript@5.4.5)
       semver: 7.6.3
       typescript: 5.4.5
+
+  vue-writer@2.0.2(vue@3.4.35(typescript@5.4.5)):
+    dependencies:
+      vue: 3.4.35(typescript@5.4.5)
 
   vue@3.4.35(typescript@5.4.5):
     dependencies:
