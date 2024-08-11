@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Levioso } from '@tresjs/cientos'
+import { Levioso, Html } from '@tresjs/cientos'
 // @ts-ignore
 import { BoxObjectHandler } from '@/components/handler/BoxObjectHandler'
 // @ts-ignore
@@ -104,9 +104,69 @@ const onViewSpinClicked = () => {
     }
   })
 }
-defineExpose({ onViewGrowClicked, onViewShrinkClicked, onViewSpinClicked })
+const onViewShrinkDissapear = () => {
+  gsap.to(entireBox.value, {
+    duration: 0.5,
+    onComplete: () => {
+      for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
+        ReferencedEntireBox.value[i].height = 0
+        ReferencedEntireBox.value[i].width = 0
+        ReferencedEntireBox.value[i].depth = 0
+      }
+    },
+    onUpdate: () => {
+      for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
+        if (ReferencedEntireBox.value[i].height <= 0) {
+          ReferencedEntireBox.value[i].height = 0
+          ReferencedEntireBox.value[i].width = 0
+          ReferencedEntireBox.value[i].depth = 0
+          continue
+        }
+        ReferencedEntireBox.value[i].height -= 0.2
+        ReferencedEntireBox.value[i].width -= 0.2
+        ReferencedEntireBox.value[i].depth -= 0.2
+      }
+    }
+  })
+}
+
+const onViewGrowReappear = () => {
+  gsap.to(entireBox.value, {
+    duration: 0.5,
+    onComplete: () => {
+      for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
+        ReferencedEntireBox.value[i].height = 1
+        ReferencedEntireBox.value[i].width = 1
+        ReferencedEntireBox.value[i].depth = 1
+      }
+    },
+    onUpdate: () => {
+      for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
+        if (ReferencedEntireBox.value[i].height >= 1) {
+          ReferencedEntireBox.value[i].height = 1
+          ReferencedEntireBox.value[i].width = 1
+          ReferencedEntireBox.value[i].depth = 1
+        }
+        ReferencedEntireBox.value[i].height += 0.2
+        ReferencedEntireBox.value[i].width += 0.2
+        ReferencedEntireBox.value[i].depth += 0.2
+      }
+    }
+  })
+}
+
+defineExpose({
+  onViewGrowClicked,
+  onViewShrinkClicked,
+  onViewSpinClicked,
+  onViewShrinkDissapear,
+  onViewGrowReappear
+})
 </script>
 <template>
+  <Html>
+    <button>Grow</button>
+  </Html>
   <Levioso :speed="closeUp ? 0 : 1" :rotationFactor="closeUp ? 0 : 1">
     <TresGroup ref="entireBox">
       <TresGroup ref="topFace">
