@@ -2,7 +2,7 @@
 // import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref, type Ref } from 'vue'
 // @ts-ignore
-import ButtonsInterface from './components/ButtonsInterface.vue'
+import AboutMe from './views/AboutMe.vue'
 // @ts-ignore
 import Render3DCanvas from './components/Render3DCanvas.vue'
 // @ts-ignore
@@ -10,6 +10,7 @@ import { readFileReturnText } from './helper/GeneralHelpers'
 // @ts-ignore
 import VueWriterBackground from './components/VueWriterBackground.vue'
 const backgroundTextAppVue: Ref<string> = ref('')
+const showAboutMe: Ref<boolean> = ref(false)
 onMounted(async () => {
   backgroundTextAppVue.value = await readFileReturnText('./App.vue')
   console.log(backgroundTextAppVue.value)
@@ -28,10 +29,26 @@ function shrinkCube() {
   // @ts-ignore
   cubeComponent.value!.onViewShrinkClicked()
 }
+function dissapearCube() {
+  // @ts-ignore
+  cubeComponent.value!.onViewShrinkDissapear()
+}
+function reappearCube() {
+  // @ts-ignore
+  cubeComponent.value!.onViewGrowReappear()
+  showAboutMe.value = false
+}
 function coolCubeEffect() {
   growCube()
   setTimeout(shrinkCube, 500)
+  showAboutMe.value = false
 }
+
+function aboutMeEffect() {
+  dissapearCube()
+  showAboutMe.value = true
+}
+
 setInterval(() => {
   spinCube()
 }, seconds * 1000)
@@ -45,10 +62,22 @@ setInterval(() => {
     <div class="cube">
       <Render3DCanvas ref="cubeComponent" />
     </div>
-    <div class="button-container">
+    <div class="button-container" v-if="!showAboutMe">
       <button @click="coolCubeEffect" class="glow-on-hover" role="button">Hello World!</button>
-      <button @click="shrinkCube" class="glow-on-hover" role="button">About Me</button>
+      <button @click="aboutMeEffect" class="glow-on-hover" role="button">About Me</button>
       <button @click="growCube" class="glow-on-hover" role="button" id="action">Grow Cube</button>
+    </div>
+    <div style="display: block" v-if="showAboutMe">
+      <button
+        @click="reappearCube"
+        class="glow-on-hover"
+        role="button"
+        id="action"
+        style="max-width: fit-content; bottom: 0; position: absolute"
+      >
+        Hello Cube
+      </button>
+      <AboutMe />
     </div>
   </div>
 </template>

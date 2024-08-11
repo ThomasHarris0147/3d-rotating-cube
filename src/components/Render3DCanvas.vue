@@ -28,7 +28,23 @@ function onViewSpinClicked(): void {
   cubeComponent.value!.onViewSpinClicked()
 }
 
-defineExpose({ onViewGrowClicked, onViewShrinkClicked, onViewSpinClicked })
+function onViewShrinkDissapear(): void {
+  // @ts-ignore
+  cubeComponent.value!.onViewShrinkDissapear()
+}
+
+function onViewGrowReappear(): void {
+  // @ts-ignore
+  cubeComponent.value!.onViewGrowReappear()
+}
+
+defineExpose({
+  onViewGrowClicked,
+  onViewShrinkClicked,
+  onViewSpinClicked,
+  onViewShrinkDissapear,
+  onViewGrowReappear
+})
 </script>
 <template>
   <TresCanvas class="add-border" v-bind="gl">

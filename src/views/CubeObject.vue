@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Levioso, Html } from '@tresjs/cientos'
+import { Levioso } from '@tresjs/cientos'
 // @ts-ignore
 import { BoxObjectHandler } from '@/components/handler/BoxObjectHandler'
 // @ts-ignore
@@ -122,9 +122,9 @@ const onViewShrinkDissapear = () => {
           ReferencedEntireBox.value[i].depth = 0
           continue
         }
-        ReferencedEntireBox.value[i].height -= 0.2
-        ReferencedEntireBox.value[i].width -= 0.2
-        ReferencedEntireBox.value[i].depth -= 0.2
+        ReferencedEntireBox.value[i].height -= 0.1
+        ReferencedEntireBox.value[i].width -= 0.1
+        ReferencedEntireBox.value[i].depth -= 0.1
       }
     }
   })
@@ -135,21 +135,21 @@ const onViewGrowReappear = () => {
     duration: 0.5,
     onComplete: () => {
       for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
-        ReferencedEntireBox.value[i].height = 1
-        ReferencedEntireBox.value[i].width = 1
-        ReferencedEntireBox.value[i].depth = 1
+        ReferencedEntireBox.value[i].height = 0.5
+        ReferencedEntireBox.value[i].width = 0.5
+        ReferencedEntireBox.value[i].depth = 0.5
       }
     },
     onUpdate: () => {
       for (let i = 0; i < ReferencedEntireBox.value.length; i++) {
-        if (ReferencedEntireBox.value[i].height >= 1) {
-          ReferencedEntireBox.value[i].height = 1
-          ReferencedEntireBox.value[i].width = 1
-          ReferencedEntireBox.value[i].depth = 1
+        if (ReferencedEntireBox.value[i].height >= 0.5) {
+          ReferencedEntireBox.value[i].height = 0.5
+          ReferencedEntireBox.value[i].width = 0.5
+          ReferencedEntireBox.value[i].depth = 0.5
         }
-        ReferencedEntireBox.value[i].height += 0.2
-        ReferencedEntireBox.value[i].width += 0.2
-        ReferencedEntireBox.value[i].depth += 0.2
+        ReferencedEntireBox.value[i].height += 0.1
+        ReferencedEntireBox.value[i].width += 0.1
+        ReferencedEntireBox.value[i].depth += 0.1
       }
     }
   })
@@ -164,9 +164,6 @@ defineExpose({
 })
 </script>
 <template>
-  <Html>
-    <button>Grow</button>
-  </Html>
   <Levioso :speed="closeUp ? 0 : 1" :rotationFactor="closeUp ? 0 : 1">
     <TresGroup ref="entireBox">
       <TresGroup ref="topFace">
