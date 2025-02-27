@@ -1,6 +1,11 @@
 # thomas-harris-port
 
+https://github.com/user-attachments/assets/6b953d9f-4fb1-413e-a474-706da71bd621
+
 This template should help get you started developing with Vue 3 in Vite.
+
+
+The About Me button also works, it zoom
 
 ## Recommended IDE Setup
 
